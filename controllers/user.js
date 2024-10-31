@@ -24,6 +24,9 @@ const signUp= async(req,res)=>{
         password:hashedPassword
     });
        const newUser= await user.save();
+       if(!newUser){
+        return res.status(400).json({message:'Failed to create user'});
+       }
       const token= jwt.sign(
         {
             id:newUser._id,
