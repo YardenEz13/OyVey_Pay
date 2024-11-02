@@ -3,7 +3,7 @@ const  { signUpSchema,signInSchema}= require('../lib/validation/user');
 const User =require('../models/user')
 const bcrypt= require('bcrypt');
 const jwt= require('jsonwebtoken');
-
+const {setTokenCookie}= require('../lib/utils');
 const signUp= async(req,res)=>{
     try{
         const{ fullName,username,email,password}=signUpSchema.parse(req.body);
