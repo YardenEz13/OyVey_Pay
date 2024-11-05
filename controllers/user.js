@@ -61,6 +61,16 @@ if(error instanceof z.ZodError){
 }
 return res.status(500).json({message:'internal server error'});
 }
+const signOut= async(req,res)=>{
+    try{
+    res.clearCookie('token');
+    return res.status(200).json({message:'Sign out successful'});
+}
+catch(error){
+    console.log(error);
+    return res.status(500).json({message:'internal server error'});
+}
+}
 module.exports={
-    signUp,signIn
+    signUp,signIn,signOut
 }
