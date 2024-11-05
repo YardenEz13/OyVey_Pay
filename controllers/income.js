@@ -1,9 +1,10 @@
+const { userIdValidation } = require('../lib/validation/user');
 const Income= require('../models/income');
 const User= require('../models/user');
 const {z}= require('zod');
 const addIncome= async(req,res)=>{
     try{
-        const userId= req.params.userId;
+        const userId=userIdValidation.parse(req.params.userId);
         const userExists= await User.findById(userId);
         if(!userExists){
             return res.status(404).json({message:'User not found'});
